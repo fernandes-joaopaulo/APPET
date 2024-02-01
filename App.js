@@ -1,17 +1,11 @@
-import { StyleSheet, StatusBar, SafeAreaView, View } from 'react-native';
-import Home from './src/telas/Home';
+import { StatusBar } from "react-native";
+import Routes from "./src/components/Routes";
+import NavBar from "./src/components/navBar";
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar/>
-      <Home/>
-    </SafeAreaView>
-  );
+  return <> 
+    <StatusBar/>
+    <NavBar/>
+    <Routes/>
+  </>
 }
-
-const styles = StyleSheet.create({
-  container: {
-
-  },
-});
