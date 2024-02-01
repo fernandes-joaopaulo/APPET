@@ -1,6 +1,6 @@
-import { Image, TouchableHighlight, StyleSheet, View, Text} from "react-native"
-import logo from "../assets/img/logo.png";
-import iconConfig from "../assets/img/icon-config.png";
+import { Image, TouchableHighlight, StyleSheet, View} from "react-native"
+import logo from "../../assets/img/logo.png"
+import iconConfig from "../../assets/img/icon-config.png";
 
 export default function NavBar(){
     return (
