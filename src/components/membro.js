@@ -8,18 +8,26 @@ export default function Membro(){
 
     React.useEffect(() => {
         api.get('/membros').then((response) => {
-            setMembros(response.data);
+            const data = response.data;
+            setMembros(data); // Atualiza o estado com os dados recebidos da API
+        }).catch(error => {
+            console.error('Erro ao carregar membros:', error);
         });
     }, []);
 
     return (
-        <View style={styles.membro}>
-            <Text style={styles.name}>Aurea</Text>
-            <Text style={styles.descricao}></Text>
-            <Text style={styles.descricao}></Text>
-            <Text style={styles.descricao}></Text>
+        <View>
+            {membros.map((membro, index) => (
+                <View style={styles.membro} key={index}>
+                    <Text style={styles.name}>{membro.name}</Text>
+                    <Text style={styles.descricao}>{membro.cargo}</Text>
+                    <Text style={styles.descricao}>{membro.email}</Text>
+                    <Text style={styles.descricao}>{membro.aniversario}</Text>
+                </View>
+            ))}
         </View>
     );
+
 };
 
 const styles = StyleSheet.create({
@@ -34,6 +42,6 @@ const styles = StyleSheet.create({
     },
     descricao:{
         color: "gray",
-        fontSize: 16.
+        fontSize: 16,
     }
 });
