@@ -238,5 +238,43 @@
             "aniversario": "19/07",
             "cargo": "gerente"
         }
+    ],
+
+    "produtos": [
+        {
+            "nome": "Ração Family Plus",
+            "preco": "149,90",
+            "url": "require('../../assets/img/produto_01.png')"
+        },
+        {
+            "nome": "Ração Golden Fórmula",
+            "preco": "59,90",
+            "url": "require('../../assets/img/produto_02.png')"
+        },
+        {
+            "nome": "Ração Mandaí Cat Premium",
+            "preco": "78,90",
+            "url": "require('../../assets/img/produto_03.png')"
+        },
+        {
+            "nome": "Petisco Dreamies Carne",
+            "preco": "5,66",
+            "url": "require('../../assets/img/produto_04.png')"
+        },
+        {
+            "nome": "Petisco Whiskas",
+            "preco": "10,99",
+            "url": "require('../../assets/img/produto_05.png')"
+        },
+        {
+            "nome": "Tapete MrPads Grass",
+            "preco": "129,90",
+            "url": "require('../../assets/img/produto_06.png')"
+        },
+        {
+            "nome": "Ração Pedigree Sabor Ao Leite",
+            "preco": "49,90",
+            "url": "require('../../assets/img/produto_07.png')"
+        }
     ]
 }
