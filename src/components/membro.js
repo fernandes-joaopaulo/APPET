@@ -9,7 +9,7 @@ export default function Membro(){
     React.useEffect(() => {
         api.get('/membros').then((response) => {
             const data = response.data;
-            setMembros(data); // Atualiza o estado com os dados recebidos da API
+            setMembros(data); 
         }).catch(error => {
             console.error('Erro ao carregar membros:', error);
         });

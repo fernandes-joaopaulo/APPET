@@ -2,11 +2,15 @@ import { Image, TouchableHighlight, StyleSheet, View} from "react-native"
 import logo from "../../assets/img/logo.png"
 import iconConfig from "../../assets/img/icon-config.png";
 
-export default function NavBar(){
+export default function NavBar({ navigation }){
+
     return (
         <View style={styles.container}>
-            <Image source={logo} />
-            <TouchableHighlight style={styles.configButton}>
+            <TouchableHighlight underlayColor={"#FFF"} onPress={() => navigation.navigate('Home')}>
+              <Image source={logo}/>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={styles.configButton} underlayColor={"#FFF"} onPress={() => navigation.navigate('Gerenciamento')} >
                 <Image source={iconConfig} style={styles.imageButton}/>
             </TouchableHighlight>
         </View>
@@ -18,6 +22,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        backgroundColor: "#FFF"
     },
     configButton: {
         backgroundColor: "#FDB833",
