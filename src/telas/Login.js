@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function Login(){
+export default function Login({navigation}){
    
     const [hidePass, setHidePass] = useState(true);
     const [iconEye, setIconEye] = useState("eye");    
@@ -37,7 +37,7 @@ export default function Login(){
                     </TouchableOpacity>
                 </View>
                 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Gerenciamento')}>
                     <View style={styles.btn}>
                         <Text style={styles.textBtn}>Login</Text>
                         <MaterialCommunityIcons name="paw" size={30} color={"#FFF"}/>
