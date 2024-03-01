@@ -1,7 +1,20 @@
 import { Text, StyleSheet, View, TouchableHighlight, Image } from "react-native";
 import Produto from "../components/produto.js";
+import React from "react";
+import api from '../services/api.js';
 
 export default function Home({navigation}){
+
+    const [produtos, setProdutos] = React.useState([]);
+
+    React.useEffect(() => {
+        api.get('/produtos').then((response) => {
+            const data = response.data;
+            setProdutos(data); 
+        }).catch(error => {
+            console.error('Erro ao carregar produtos:', error);
+        });
+    }, []);
 
     return ( <>
         <View style={styles.topo}>
@@ -16,7 +29,15 @@ export default function Home({navigation}){
 
         <Text style={styles.header}>Produtos em destaque</Text>
 
-        <Produto/>
+        <View style={styles.container}>
+        
+        {produtos.slice(0, 4).map((produto, index) => (
+
+            <Produto nome={produto.nome} preco={produto.preco} image={produto.url} key={index}/>
+
+        ))}
+        
+        </View>
 
         <View style={styles.bottomText}>
             <Text style={styles.header}>Outros produtos</Text> 
@@ -70,5 +91,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 14,
         paddingRight: 10,
+    },
+    container:{
+        backgroundColor: "#FFF",
+        display: 'flex',
+        flexDirection: "row",
+        flexWrap: 'wrap'
     },
 });
