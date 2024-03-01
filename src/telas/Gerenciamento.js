@@ -8,6 +8,10 @@ import { useState } from "react";
 export default function Gerenciamento({navigation}){
 
     const [membros, setMembros] = React.useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [createVisible, setCreateVisible] = useState(false);
+    const [opacity, setOpacity] = useState(1);
+    const [selectedMembro, setSelectedMembro] = useState(null);
 
     React.useEffect(() => {
         api.get('/membros').then((response) => {
@@ -18,29 +22,52 @@ export default function Gerenciamento({navigation}){
         });
     }, []);
 
-    const [modalVisible, setModalVisible] = useState(false);
-    const [opacity, setOpacity] = useState(1);
 
     React.useEffect(() => {
-        if (modalVisible) {
+        if (modalVisible || createVisible) {
             setOpacity(0.5);
         } else {
             setOpacity(1);
         }
-    }, [modalVisible]);
+    }, [modalVisible, createVisible]);
+
 
     return ( <>
         <View style={[styles.container, {opacity: opacity}]}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity 
+                onPress={() => navigation.goBack()}
+                style={{width: 70}}
+                >
                 <Text style={styles.goBack}>Voltar</Text>
             </TouchableOpacity>
             <Text style={styles.header}>Gerenciamento</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setCreateVisible(true)}>
                 <Image source={newUser} style={styles.image}/>
             </TouchableOpacity>
         </View>
 
         <ScrollView style={[styles.scroll, {opacity: opacity}]}>
+
+            <View>
+                {membros.map((membro, index) => (
+                    <View style={styles.membro} key={index}>
+
+                        <Text style={styles.name}>{membro.name}</Text>
+                        <Text style={styles.descricao}>{membro.cargo}</Text>
+
+                        <View style={{display: 'flex', flexDirection: 'row-reverse'}}>
+
+                            <TouchableOpacity style={styles.view}  onPress={() => [setModalVisible(true), setSelectedMembro(membro)]}>
+                                <MaterialCommunityIcons name={'eye'} color={'#FFF'} size={20}/>
+                                <Text style={styles.viewText}>Visualizar</Text>
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                    
+                ))}
+            </View>
+
             <Modal
             animationType="slide"
             transparent={true}
@@ -55,20 +82,43 @@ export default function Gerenciamento({navigation}){
                 
                         <View>
 
-                            <Text style={styles.label}>Nome</Text>
-                                <TextInput style={styles.input}/>
-                            <Text style={styles.label}>Cargo</Text>
-                                <TextInput style={styles.input}/>
-                            <Text style={styles.label}>Email</Text>
-                                <TextInput style={styles.input}/>
-                            <Text style={styles.label}>Aniversário</Text>
-                                <TextInput style={styles.input}/>
+                        <Text style={styles.label}>Nome</Text>
+                        <TextInput
+                            cursorColor={'#000'}
+                            style={styles.input}
+                            value={selectedMembro ? selectedMembro.name : ''}
+                            editable={true}
+                        />
+                        <Text style={styles.label}>Cargo</Text>
+                        <TextInput
+                            cursorColor={'#000'}
+                            style={styles.input}
+                            value={selectedMembro ? selectedMembro.cargo : ''}
+                            editable={true}
+                        />
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            cursorColor={'#000'}
+                            style={styles.input}
+                            value={selectedMembro ? selectedMembro.email : ''}
+                            editable={true}
+                        />
+                        <Text style={styles.label}>Aniversário</Text>
+                        <TextInput
+                            cursorColor={'#000'}
+                            style={styles.input}
+                            value={selectedMembro ? selectedMembro.aniversario : ''}
+                            editable={true}
+                        />
+
 
                         </View>
                 
                         <View style={{display: 'flex', flexDirection: 'row'}}>
 
-                            <TouchableOpacity style={[styles.btn, {backgroundColor: '#49B637'}]}>
+                            <TouchableOpacity 
+                                style={[styles.btn, {backgroundColor: '#49B637'}]}
+                               >
 
                                 <MaterialCommunityIcons name={'pencil'} color={'#FFF'} size={20}/>
                                 <Text style={styles.textBtn}>Editar</Text>
@@ -92,24 +142,45 @@ export default function Gerenciamento({navigation}){
                 </View>
             </Modal>
 
-            <View>
-                {membros.map((membro, index) => (
-                    <View style={styles.membro} key={index}>
+            <Modal
+            animationType="slide"
+            transparent={true}
+            visible={createVisible}
+            onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setCreateVisible(!createVisible);
+            }}>
+            <View style={styles.centeredView}>
+                
+                <View style={styles.modalView}>
+                
+                        <View>
 
-                        <Text style={styles.name}>{membro.name}</Text>
-                        <Text style={styles.descricao}>{membro.cargo}</Text>
-
-                        <View style={{display: 'flex', flexDirection: 'row-reverse'}}>
-
-                            <TouchableOpacity style={styles.view}  onPress={() => setModalVisible(true)}>
-                                <MaterialCommunityIcons name={'eye'} color={'#FFF'} size={20}/>
-                                <Text style={styles.viewText}>Visualizar</Text>
-                            </TouchableOpacity>
+                            <Text style={styles.label}>Nome</Text>
+                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                            <Text style={styles.label}>Cargo</Text>
+                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                            <Text style={styles.label}>Email</Text>
+                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                            <Text style={styles.label}>Aniversário</Text>
+                                <TextInput cursorColor={'#000'} style={styles.input}/>
 
                         </View>
+                      
+                            <TouchableOpacity style={[styles.btn, {backgroundColor: '#FDB833'}]}>
+
+                                <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 17}}>Salvar</Text>
+
+                            </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => setCreateVisible(!createVisible)} >
+                                <Text style={{color: '#FFF', marginTop: 20, fontWeight: 'bold'}}>Voltar</Text>
+                        </TouchableOpacity>
+
                     </View>
-                ))}
-            </View>
+                </View>
+            </Modal>
+
         </ScrollView>
     </>
     );
@@ -140,7 +211,7 @@ const styles = StyleSheet.create({
     goBack:{
         fontSize: 18,
         padding: 10,
-        color: '#FDB833'
+        color: '#FDB833',
     },
     membro:{
         borderTopWidth: 0.2,
@@ -200,6 +271,7 @@ const styles = StyleSheet.create({
         height: 34,
         borderRadius: 8,
         marginBottom: 20,
+        paddingLeft: 10,
         borderWidth: 0.5
       },
       label:{
