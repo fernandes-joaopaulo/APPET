@@ -1,39 +1,17 @@
 import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
-import React from "react";
-import api from '../services/api.js';
 
-export default function Produto(){
-    
-    const [produtos, setProdutos] = React.useState([]);
+export default function Produto({nome, preco, image}){
 
-    React.useEffect(() => {
-        api.get('/produtos').then((response) => {
-            const data = response.data;
-            setProdutos(data); 
-        }).catch(error => {
-            console.error('Erro ao carregar produtos:', error);
-        });
-    }, []);
-    
     return(
 
-        <View style={styles.container}>
-            
-        {produtos.slice(0, 4).map((produto, index) => (
-
-        <View style={styles.destaque} key={index}>
-
+        <View style={styles.destaque} >
             <TouchableOpacity style={styles.botaoProduto}>
-                <Image source={produto.url} style={styles.image}/>
+                <Image source={require('../../assets/img/produto_01.png')} style={styles.image}/>
             </TouchableOpacity>
 
-            <Text style={styles.nomeProduto}> {produto.nome} </Text>
-            <Text style={styles.precoProduto}> {produto.preco} </Text>
+            <Text style={styles.nomeProduto}> {nome} </Text>
+            <Text style={styles.precoProduto}> {preco} </Text>
         
-        </View>
-        
-        ))}
-
         </View>
     );
 }
