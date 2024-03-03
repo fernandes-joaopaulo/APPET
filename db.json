@@ -245,55 +245,64 @@
             "id": 1,
             "nome": "Ração Family Plus",
             "preco": "149,90",
-            "url": "https://ocrim.com.br/wp-content/uploads/2021/05/Mockup-Family-Plus-Adulto-15kg-452x640.png"
+            "url": "https://ocrim.com.br/wp-content/uploads/2021/05/Mockup-Family-Plus-Adulto-15kg-452x640.png",
+            "descricao": "Family Plus é um alimento para cães, rico em nutrientes. Proporciona uma refeição adequada ao seu pet, seja ele filhote ou adulto, e com sabor irresistível."
         },
         {
             "id": 2,
             "nome": "Ração Golden Fórmula",
             "preco": "59,90",
-            "url": "https://premierpet.com.br/wp-content/uploads/2020/11/racao-golden-formula-caes-adulto-porte-pequeno-frango-arroz.png"
+            "url": "https://premierpet.com.br/wp-content/uploads/2020/11/racao-golden-formula-caes-adulto-porte-pequeno-frango-arroz.png",
+            "descricao": "GoldeN Formula Adultos Frango & Arroz Mini Bits é um alimento Premium Especial desenvolvido para cães adultos de pequeno porte. Os cães são essencialmente carnívoros e digerem muito melhor alimentos de origem animal."
         },
         {
             "id": 3,
             "nome": "Ração Mandaí Cat Premium",
             "preco": "78,90",
-            "url": "https://nutricolalimentos.com.br/wp-content/uploads/2020/03/Mandai-Cat-Premium-500g.png"
+            "url": "https://nutricolalimentos.com.br/wp-content/uploads/2020/03/Mandai-Cat-Premium-500g.png",
+            "descricao": "MANDAÍ CAT PREMIUM é um alimento completo e balanceado, formulado com ingredientes selecionados de qualidade, que garante uma refeição saborosa e equilibrada, indispensáveis para a perfeita nutrição e saúde do seu gato."
         },
         {
             "id": 4,
             "nome": "Petisco Dreamies Carne",
             "preco": "5,66",
-            "url": "https://static.paodeacucar.com/img/uploads/1/126/24899126.png"
+            "url": "https://static.paodeacucar.com/img/uploads/1/126/24899126.png",
+            "descricao": "O Petisco Dreamies Salmão Irresistível para Gatos Adultos garantem diversão e mais momentos juntos com seu gato. São deliciosos petiscos para toda hora, com menos de três calorias por pedacinho, crocantes por fora e macios por dentro."
         },
         {
             "id": 5,
             "nome": "Petisco Whiskas",
             "preco": "10,99",
-            "url": "https://www.sudica.com.br/media/catalog/product/cache/a65d2b67834c4584ec9c01d883900305/w/h/whiskas-filhotes-sabor-frango-ao-molho-85g.png"
+            "url": "https://www.sudica.com.br/media/catalog/product/cache/a65d2b67834c4584ec9c01d883900305/w/h/whiskas-filhotes-sabor-frango-ao-molho-85g.png",
+            "descricao": "A Whiskas sabe o que os gatos naturalmente precisam e gostam. Por isso, cada sachê é preparado cuidadosamente com ingredientes de alta qualidade, garantindo os nutrientes que eles precisam todos os dias e ainda ajuda no crescimento saudável."
         },
         {
             "id": 6,
             "nome": "Tapete MrPads Grass",
             "preco": "129,90",
-            "url": "https://procao.ind.br/wp-content/uploads/2022/08/Mockup_Tapete_MrPADSGrass_80x60_30un-4.png"
+            "url": "https://procao.ind.br/wp-content/uploads/2022/08/Mockup_Tapete_MrPADSGrass_80x60_30un-4.png",
+            "descricao": "O tapete higiênico Mr. Pads Grama possui cheirinho de grama, atrativo que auxilia na educação sanitária do seu animalzinho."
         },
         {
             "id": 7,
             "nome": "Ração Pedigree Sabor Ao Leite",
             "preco": "49,90",
-            "url": "https://www.pedigree.com.br/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2401/files/2022-10/7896029081112_1.png"
+            "url": "https://www.pedigree.com.br/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2401/files/2022-10/7896029081112_1.png",
+            "descricao": "Nós de PEDIGREE® acreditamos que todos os cães merecem um lar amoroso. Eles alimentam o que há de melhor nas pessoas e PEDIGREE® alimenta o que há de melhor neles."
         },
         {
             "id": 8,
             "nome": "Ração Pedigree Vital Pro",
             "preco": "88,90",
-            "url": "https://d246rzh6rlbt6w.cloudfront.net/img.produtos/7896029006948/img_500_1.png"
+            "url": "https://d246rzh6rlbt6w.cloudfront.net/img.produtos/7896029006948/img_500_1.png",
+            "descricao": "PEDIGREE® oferece a nutrição profissional que seu cão necessita para estar saudável em cada etapa de sua vida. "
         },
         {
             "id": 9,
             "nome": "Ração Magnus Premium",
             "preco": "39,90",
-            "url": "https://petshowpetshop.com.br/wp-content/uploads/2021/03/MAGNUS_PREMIUM1_TODO_DIA_ADULTO_CARNE_ANTIGA.png"
+            "url": "https://petshowpetshop.com.br/wp-content/uploads/2021/03/MAGNUS_PREMIUM1_TODO_DIA_ADULTO_CARNE_ANTIGA.png",
+            "descricao": "Magnus Premium Todo Dia Cães Adultos Sabor Carne é um alimento premium completo seco, formulado com precisão para atender as exigências do cão adulto, acima de 12 meses, de qualquer raça, em fase de manutenção."
         }
     ]
 }

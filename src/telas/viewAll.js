@@ -33,7 +33,7 @@ export default function Todos({navigation}){
 
           {produtos.map((produto, index) => (
 
-              <Produto nome={produto.nome} preco={produto.preco} image={produto.url} key={index}/>
+              <Produto nome={produto.nome} preco={produto.preco} image={produto.url} descricao={produto.descricao} key={index}/>
 
           ))}
           
