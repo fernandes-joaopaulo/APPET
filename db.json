@@ -242,39 +242,58 @@
 
     "produtos": [
         {
+            "id": 1,
             "nome": "Ração Family Plus",
             "preco": "149,90",
-            "url": "require('../../assets/img/produto_01.png')"
+            "url": "https://ocrim.com.br/wp-content/uploads/2021/05/Mockup-Family-Plus-Adulto-15kg-452x640.png"
         },
         {
+            "id": 2,
             "nome": "Ração Golden Fórmula",
             "preco": "59,90",
-            "url": "require('../../assets/img/produto_02.png')"
+            "url": "https://premierpet.com.br/wp-content/uploads/2020/11/racao-golden-formula-caes-adulto-porte-pequeno-frango-arroz.png"
         },
         {
+            "id": 3,
             "nome": "Ração Mandaí Cat Premium",
             "preco": "78,90",
-            "url": "require('../../assets/img/produto_03.png')"
+            "url": "https://nutricolalimentos.com.br/wp-content/uploads/2020/03/Mandai-Cat-Premium-500g.png"
         },
         {
+            "id": 4,
             "nome": "Petisco Dreamies Carne",
             "preco": "5,66",
-            "url": "require('../../assets/img/produto_04.png')"
+            "url": "https://static.paodeacucar.com/img/uploads/1/126/24899126.png"
         },
         {
+            "id": 5,
             "nome": "Petisco Whiskas",
             "preco": "10,99",
-            "url": "require('../../assets/img/produto_05.png')"
+            "url": "https://www.sudica.com.br/media/catalog/product/cache/a65d2b67834c4584ec9c01d883900305/w/h/whiskas-filhotes-sabor-frango-ao-molho-85g.png"
         },
         {
+            "id": 6,
             "nome": "Tapete MrPads Grass",
             "preco": "129,90",
-            "url": "require('../../assets/img/produto_06.png')"
+            "url": "https://procao.ind.br/wp-content/uploads/2022/08/Mockup_Tapete_MrPADSGrass_80x60_30un-4.png"
         },
         {
+            "id": 7,
             "nome": "Ração Pedigree Sabor Ao Leite",
             "preco": "49,90",
-            "url": "require('../../assets/img/produto_07.png')"
+            "url": "https://www.pedigree.com.br/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf2401/files/2022-10/7896029081112_1.png"
+        },
+        {
+            "id": 8,
+            "nome": "Ração Pedigree Vital Pro",
+            "preco": "88,90",
+            "url": "https://d246rzh6rlbt6w.cloudfront.net/img.produtos/7896029006948/img_500_1.png"
+        },
+        {
+            "id": 9,
+            "nome": "Ração Magnus Premium",
+            "preco": "39,90",
+            "url": "https://petshowpetshop.com.br/wp-content/uploads/2021/03/MAGNUS_PREMIUM1_TODO_DIA_ADULTO_CARNE_ANTIGA.png"
         }
     ]
 }

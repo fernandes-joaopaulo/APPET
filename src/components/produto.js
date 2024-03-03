@@ -6,7 +6,7 @@ export default function Produto({nome, preco, image}){
 
         <View style={styles.destaque} >
             <TouchableOpacity style={styles.botaoProduto}>
-                <Image source={require('../../assets/img/produto_01.png')} style={styles.image}/>
+                <Image source={{uri: image}} style={styles.image} loadingIndicatorSource={{uri: "https://www.doutoresdoexcel.com.br/wp-content/uploads/2021/07/Loading-PNG.gif"}}/>
             </TouchableOpacity>
 
             <Text style={styles.nomeProduto}> {nome} </Text>
