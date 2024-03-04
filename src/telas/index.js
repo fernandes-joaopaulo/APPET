@@ -1,11 +1,14 @@
-import { Text, StyleSheet, View, TouchableHighlight, Image } from "react-native";
+import { Text, StyleSheet, View, TouchableHighlight, Image, Dimensions } from "react-native";
 import Produto from "../components/produto.js";
 import React from "react";
 import api from '../services/api.js';
+import Carousel from 'react-native-snap-carousel';
+
 
 export default function Home({navigation}){
 
     const [produtos, setProdutos] = React.useState([]);
+    const width = Dimensions.get('screen').width;
 
     React.useEffect(() => {
         api.get('/produtos').then((response) => {
@@ -15,6 +18,12 @@ export default function Home({navigation}){
             console.error('Erro ao carregar produtos:', error);
         });
     }, []);
+
+    const renderProdutoItem = ({item, index}) => {
+        return (
+            <Produto nome={item.nome} preco={item.preco} image={item.url} descricao={item.descricao} key={index}/>
+        );
+    };
 
     return ( <>
         <View style={styles.topo}>
@@ -43,6 +52,15 @@ export default function Home({navigation}){
             <Text style={styles.header}>Outros produtos</Text> 
             <Text style={styles.textBtn}  onPress={() => navigation.navigate('Todos')}>Ver todos</Text>
         </View>
+
+        <Carousel
+                data={produtos.slice(4)} // Excluindo os 4 primeiros produtos
+                renderItem={renderProdutoItem}
+                sliderWidth={width}
+                itemWidth={130}
+                loop={true}
+                backgroundColor={'#FFF'}
+            />
                     
     </>
     );
@@ -77,7 +95,7 @@ const styles = StyleSheet.create({
     header:{
         fontWeight: "bold",
         fontSize: 18,
-        padding: 15,
+        padding: 10,
         backgroundColor: "#FFF"
     },
     bottomText:{

@@ -187,7 +187,7 @@ export default function Gerenciamento({navigation}){
                                     setEmail('');
                                     setCargo('');
                                     setAniversario('');
-                                    console.log(nome)}}>
+                                    }}>
 
                                 <MaterialCommunityIcons name={'pencil'} color={'#FFF'} size={20}/>
                                 <Text style={styles.textBtn}>Editar</Text>
