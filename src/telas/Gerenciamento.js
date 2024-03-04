@@ -24,7 +24,7 @@ async function newMembro( nome, cargo, email, aniversario){
 
 const deleteMembro = async (membroId) => {
     try {
-        const response = await api.delete(`/membros/${membroId}`);
+        await api.delete(`/membros/${membroId}`);
         Alert.alert('Excluído com sucesso!')
         // Aqui você pode atualizar o estado de membros se necessário
     } catch (error) {
@@ -34,11 +34,11 @@ const deleteMembro = async (membroId) => {
 
 const editMembro = async (membro, nome, cargo, email, aniversario) => {
     try {
-        const response = await api.put(`/membros/${membro.id}`, {
-            name: nome,
-            cargo: cargo,
-            email: email,
-            aniversario: aniversario,
+        await api.put(`/membros/${membro.id}`, {
+            name: nome ? nome : membro.name,
+            cargo: cargo ? cargo : membro.cargo,
+            email: email ? email : membro.email,
+            aniversario: aniversario ? aniversario : membro.aniversario,
         });
         Alert.alert('Editado com sucesso!');
     } catch (error) {
@@ -182,7 +182,12 @@ export default function Gerenciamento({navigation}){
                                     await editMembro(selectedMembro, nome, cargo, email, aniversario)
                                     const response = await api.get('/membros');
                                     setMembros(response.data);
-                                    setModalVisible(!modalVisible);}}>
+                                    setModalVisible(!modalVisible);
+                                    setNome('');
+                                    setEmail('');
+                                    setCargo('');
+                                    setAniversario('');
+                                    console.log(nome)}}>
 
                                 <MaterialCommunityIcons name={'pencil'} color={'#FFF'} size={20}/>
                                 <Text style={styles.textBtn}>Editar</Text>
@@ -246,7 +251,11 @@ export default function Gerenciamento({navigation}){
                                 await newMembro(nome, cargo, email, aniversario);
                                 const response = await api.get('/membros');
                                 setMembros(response.data);
-                                setCreateVisible(!createVisible);}}>
+                                setCreateVisible(!createVisible);
+                                setNome('');
+                                setEmail('');
+                                setCargo('');
+                                setAniversario('');}}>
 
                                 <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 17}}>Salvar</Text>
 
