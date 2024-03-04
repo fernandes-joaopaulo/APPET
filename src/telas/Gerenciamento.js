@@ -5,13 +5,61 @@ import React from 'react';
 import api from '../services/api.js';
 import { useState } from "react";
 
+
+
+async function newMembro( nome, cargo, email, aniversario){
+
+        try {
+            await api.post('/membros', {
+                name: nome,
+                cargo: cargo,
+                email: email,
+                aniversario: aniversario,
+            });
+            Alert.alert('Criado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao adicionar novo membro:', error);
+        }
+}
+
+const deleteMembro = async (membroId) => {
+    try {
+        const response = await api.delete(`/membros/${membroId}`);
+        Alert.alert('Excluído com sucesso!')
+        // Aqui você pode atualizar o estado de membros se necessário
+    } catch (error) {
+        console.error('Erro ao deletar membro:', error);
+    }
+};
+
+const editMembro = async (membro, nome, cargo, email, aniversario) => {
+    try {
+        const response = await api.put(`/membros/${membro.id}`, {
+            name: nome,
+            cargo: cargo,
+            email: email,
+            aniversario: aniversario,
+        });
+        Alert.alert('Editado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao editar membro:', error);
+    }
+};
+
+
 export default function Gerenciamento({navigation}){
+
 
     const [membros, setMembros] = React.useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [createVisible, setCreateVisible] = useState(false);
     const [opacity, setOpacity] = useState(1);
     const [selectedMembro, setSelectedMembro] = useState(null);
+
+    const [nome, setNome] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [email, setEmail] = useState('');
+    const [aniversario, setAniversario] = useState('');
 
     React.useEffect(() => {
         api.get('/membros').then((response) => {
@@ -41,7 +89,7 @@ export default function Gerenciamento({navigation}){
                 <Text style={styles.goBack}>Voltar</Text>
             </TouchableOpacity>
             <Text style={styles.header}>Gerenciamento</Text>
-            <TouchableOpacity onPress={() => setCreateVisible(true)}>
+            <TouchableOpacity onPress={() => setCreateVisible(true)} style={{width: 50}}>
                 <Image source={newUser} style={styles.image}/>
             </TouchableOpacity>
         </View>
@@ -68,7 +116,11 @@ export default function Gerenciamento({navigation}){
                 ))}
             </View>
 
-            <Modal
+        </ScrollView>
+
+
+
+        <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
@@ -86,29 +138,37 @@ export default function Gerenciamento({navigation}){
                         <TextInput
                             cursorColor={'#000'}
                             style={styles.input}
-                            value={selectedMembro ? selectedMembro.name : ''}
+                            placeholder={selectedMembro ? selectedMembro.name : ''}
                             editable={true}
+                            value={nome}
+                            onChangeText={setNome}
                         />
                         <Text style={styles.label}>Cargo</Text>
                         <TextInput
                             cursorColor={'#000'}
                             style={styles.input}
-                            value={selectedMembro ? selectedMembro.cargo : ''}
+                            placeholder={selectedMembro ? selectedMembro.cargo : ''}
                             editable={true}
+                            value={cargo}
+                            onChangeText={setCargo}
                         />
                         <Text style={styles.label}>Email</Text>
                         <TextInput
                             cursorColor={'#000'}
                             style={styles.input}
-                            value={selectedMembro ? selectedMembro.email : ''}
+                            placeholder={selectedMembro ? selectedMembro.email : ''}
                             editable={true}
+                            value={email}
+                            onChangeText={setEmail}
                         />
                         <Text style={styles.label}>Aniversário</Text>
                         <TextInput
                             cursorColor={'#000'}
                             style={styles.input}
-                            value={selectedMembro ? selectedMembro.aniversario : ''}
+                            placeholder={selectedMembro ? selectedMembro.aniversario : ''}
                             editable={true}
+                            value={aniversario}                            
+                            onChangeText={setAniversario}
                         />
 
 
@@ -118,14 +178,24 @@ export default function Gerenciamento({navigation}){
 
                             <TouchableOpacity 
                                 style={[styles.btn, {backgroundColor: '#49B637'}]}
-                               >
+                                onPress={async () => {
+                                    await editMembro(selectedMembro, nome, cargo, email, aniversario)
+                                    const response = await api.get('/membros');
+                                    setMembros(response.data);
+                                    setModalVisible(!modalVisible);}}>
 
                                 <MaterialCommunityIcons name={'pencil'} color={'#FFF'} size={20}/>
                                 <Text style={styles.textBtn}>Editar</Text>
 
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={[styles.btn, {backgroundColor: '#CB3636'}]}>
+                            <TouchableOpacity 
+                                style={[styles.btn, {backgroundColor: '#CB3636'}]}
+                                onPress={async () => {
+                                    await deleteMembro(selectedMembro.id)
+                                    const response = await api.get('/membros');
+                                    setMembros(response.data);
+                                    setModalVisible(!modalVisible);}}>
 
                                 <MaterialCommunityIcons name={'trash-can'} color={'#FFF'} size={20}/>
                                 <Text style={styles.textBtn}>Apagar</Text>
@@ -142,6 +212,9 @@ export default function Gerenciamento({navigation}){
                 </View>
             </Modal>
 
+
+
+
             <Modal
             animationType="slide"
             transparent={true}
@@ -157,17 +230,23 @@ export default function Gerenciamento({navigation}){
                         <View>
 
                             <Text style={styles.label}>Nome</Text>
-                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                                <TextInput cursorColor={'#000'} style={styles.input} onChangeText={setNome}/>
                             <Text style={styles.label}>Cargo</Text>
-                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                                <TextInput cursorColor={'#000'} style={styles.input} onChangeText={setCargo}/>
                             <Text style={styles.label}>Email</Text>
-                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                                <TextInput cursorColor={'#000'} style={styles.input} onChangeText={setEmail}/>
                             <Text style={styles.label}>Aniversário</Text>
-                                <TextInput cursorColor={'#000'} style={styles.input}/>
+                                <TextInput cursorColor={'#000'} style={styles.input} onChangeText={setAniversario}/>
 
                         </View>
                       
-                            <TouchableOpacity style={[styles.btn, {backgroundColor: '#FDB833'}]}>
+                            <TouchableOpacity 
+                            style={[styles.btn, {backgroundColor: '#FDB833'}]}
+                            onPress={async () => {
+                                await newMembro(nome, cargo, email, aniversario);
+                                const response = await api.get('/membros');
+                                setMembros(response.data);
+                                setCreateVisible(!createVisible);}}>
 
                                 <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 17}}>Salvar</Text>
 
@@ -181,7 +260,6 @@ export default function Gerenciamento({navigation}){
                 </View>
             </Modal>
 
-        </ScrollView>
     </>
     );
 };
