@@ -1,4 +1,4 @@
-import {Text, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Text, ScrollView, StyleSheet, TouchableOpacity, View, Dimensions} from 'react-native';
 import Produto from '../components/produto';
 import React from "react";
 import api from '../services/api.js';
@@ -6,6 +6,7 @@ import api from '../services/api.js';
 export default function Todos({navigation}){
 
   const [produtos, setProdutos] = React.useState([]);
+  const height = Dimensions.get('screen').height;
 
   React.useEffect(() => {
       api.get('/produtos').then((response) => {
@@ -17,7 +18,7 @@ export default function Todos({navigation}){
   }, []);
 
   return(
-        <View style={{backgroundColor: '#FFF', marginBottom: 40}}>
+        <View style={{backgroundColor: '#FFF', marginBottom: 40, height: height}}>
 
         <TouchableOpacity 
           onPress={() => navigation.goBack()}
